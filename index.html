@@ -11,13 +11,82 @@
    <!-- Place favicon.ico in the root directory -->
    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/favicon.png">
 
-   <!-- CSS here -->
-   <link rel="stylesheet" href="assets/css/bootstrap.css">
-   <link rel="stylesheet" href="assets/css/swiper-bundle.css">
-   <link rel="stylesheet" href="assets/css/magnific-popup.css">
-   <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
-   <link rel="stylesheet" href="assets/css/spacing.css">
-   <link rel="stylesheet" href="assets/css/main.css">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/font-awesome-pro.css">
+    <link rel="stylesheet" href="assets/css/spacing.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+    .language-switcher {
+       position: relative;
+       z-index: 9999;
+    }
+    .lang-dropdown {
+       position: relative;
+    }
+    .lang-drop-btn {
+       background: transparent;
+       border: 1px solid rgba(255,255,255,0.3);
+       color: #fff;
+       padding: 8px 16px;
+       border-radius: 4px;
+       cursor: pointer;
+       font-size: 14px;
+       font-weight: 500;
+       transition: all 0.3s ease;
+    }
+    .lang-drop-btn:hover {
+       background: rgba(255,255,255,0.1);
+       border-color: rgba(255,255,255,0.5);
+    }
+    .lang-dropdown-content {
+       display: none;
+       position: absolute;
+       top: calc(100% + 4px);
+       right: 0;
+       background: #1a1a1a;
+        min-width: 150px;
+       border-radius: 4px;
+       overflow: hidden;
+       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .lang-dropdown:hover .lang-dropdown-content,
+    .lang-dropdown:focus-within .lang-dropdown-content {
+       display: block;
+    }
+    .lang-btn {
+       display: block;
+       width: 100%;
+       padding: 10px 16px;
+       background: transparent;
+       border: none;
+       color: #fff;
+       text-align: left;
+cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease;
+    }
+    .lang-btn:hover {
+       background: rgba(255,255,255,0.1);
+    }
+    .lang-btn .flag {
+       margin-right: 8px;
+    }
+    .current-lang-flag {
+       margin-right: 6px;
+    }
+    .tp-btn-rounded.btn-item {
+       cursor: pointer;
+    }
+       background: rgba(255,255,255,0.1);
+    }
+    .lang-btn.active {
+       background: #C4EE18;
+       color: #000;
+    }
+    </style>
 </head>
 
 <body class="tp-magic-cursor loaded">
@@ -82,8 +151,8 @@
                <div class="tp-offcanvas-2-left-wrap d-flex justify-content-between align-items-center">
                   <div class="tp-offcanvas-2-logo">
                      <a href="index.html">
-                        <img class="logo-1" data-width="150" src="assets/img/logo/logo-white-2.svg" alt="">
-                        <img class="logo-2" data-width="150" src="assets/img/logo/logo-black.png" alt="">
+                        <img class="logo-1" data-width="60" src="assets/img/logo/logo-white-2.svg" alt="">
+                        <img class="logo-2" data-width="60" src="assets/img/logo/logo-black.png" alt="">
                      </a>
                   </div>
                   <div class="tp-offcanvas-2-close d-md-none text-end">
@@ -121,13 +190,13 @@
                   </button>
                </div>
                <div class="tp-offcanvas-2-right-info-box mt-160">
-                  <h4 class="tp-offcanvas-2-right-info-title">Get In Touch</h4>
+                  <h4 class="tp-offcanvas-2-right-info-title" data-i18n="offcanvas_get_touch">Get In Touch</h4>
                   <!-- <div class="tp-offcanvas-2-right-info-item">
                      <label class="mb-10">Phone</label>
                      <a class="underline-white" href="tel:42345678910">+4 (234) 567 8910</a>
                   </div> -->
-                  <div class="tp-offcanvas-2-right-info-item">
-                     <label class="mb-10">Email</label>
+<div class="tp-offcanvas-2-right-info-item">
+                      <label class="mb-10" data-i18n="offcanvas_email">Email</label>
                      <a class="underline-white" href="mailto:joao@emonelabs.com">joao@emonelabs.com</a>
                   </div>
                   <!-- <div class="tp-offcanvas-2-right-info-item">
@@ -136,8 +205,8 @@
                            602 Elgin St. Celina, Delaware <br> 1009
                      </a>
                   </div> -->
-                  <div class="tp-offcanvas-2-right-info-item">
-                     <label class="mb-15">Follow us</label>
+<div class="tp-offcanvas-2-right-info-item">
+                      <label class="mb-15" data-i18n="offcanvas_follow">Follow us</label>
                      <div class="tp-offcanvas-2-right-social">
                            <a href="#">
                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,13 +252,23 @@
                </div>
                <div class="col-xl-6 col-lg-6 col-sm-7 col-6">
                   <div class="tp-header-right tp-header-2-right d-flex align-items-center justify-content-end">
-                     <div class="tp-btn-group">
+                      <div class="language-switcher mr-20">
+                          <div class="lang-dropdown">
+                             <button class="lang-drop-btn" id="current-lang"><span class="current-lang-flag"></span> <span class="current-lang-text">EN</span></button>
+                             <div class="lang-dropdown-content">
+                                <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')"><span class="flag">🇺🇸</span> English</button>
+                                <button class="lang-btn" data-lang="es" onclick="setLanguage('es')"><span class="flag">🇪🇸</span> Español</button>
+                                <button class="lang-btn" data-lang="pt" onclick="setLanguage('pt')"><span class="flag">🇧🇷</span> Português</button>
+                             </div>
+                          </div>
+                       </div>
+                      <div class="tp-btn-group">
                         <a class="tp-btn-circle" href="contact-dark.html">
                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M2.41379 3.30208C5.97452 3.05821 10.6092 1.55558 14 0C12.4438 3.39014 10.9406 8.02425 10.6973 11.585L8.35765 6.59331L1.14783 13.8037C1.02165 13.9295 0.850656 14.0001 0.672431 14C0.539461 14 0.409486 13.9605 0.298934 13.8866C0.188382 13.8128 0.102217 13.7077 0.0513353 13.5849C0.000453949 13.462 -0.0128613 13.3269 0.013072 13.1965C0.0390053 13.066 0.103024 12.9462 0.197034 12.8522L7.40683 5.64241L2.41379 3.30208Z" fill="#030303" />
                            </svg>
                         </a>
-                        <a class="tp-btn-2 tp-btn-primary" data-cal-link="joao-paulo-vieira-da-silva/m1-labs" data-cal-namespace="m1-labs" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Let’s Talk</a>
+                        <a class="tp-btn-2 tp-btn-primary" data-i18n="btn_lets_talk" data-cal-link="joao-paulo-vieira-da-silva/m1-labs" data-cal-namespace="m1-labs" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Let’s Talk</a>
                         <a class="tp-btn-circle" href="contact-dark.html">
                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M2.41379 3.30208C5.97452 3.05821 10.6092 1.55558 14 0C12.4438 3.39014 10.9406 8.02425 10.6973 11.585L8.35765 6.59331L1.14783 13.8037C1.02165 13.9295 0.850656 14.0001 0.672431 14C0.539461 14 0.409486 13.9605 0.298934 13.8866C0.188382 13.8128 0.102217 13.7077 0.0513353 13.5849C0.000453949 13.462 -0.0128613 13.3269 0.013072 13.1965C0.0390053 13.066 0.103024 12.9462 0.197034 12.8522L7.40683 5.64241L2.41379 3.30208Z" fill="#030303" />
@@ -307,24 +386,24 @@
                            <div class="row">
                               <div class="col-lg-9">
                                  <div class="tp-hero-2-title-wrap pt-115 mb-40">
-                                    <h2 class="tp-hero-2-title tp-ff-funnel fw-600 fs-100 tp-text-common-white lh-1">
-                                       Ideas from
-                                       <span class="tp-video-2-main d-inline-block">
-                                          <span class="tp-video-main tp-hero-video d-flex align-items-center">
-                                             <a class="tp-hero-video-btn popup-video mr-20" href="https://www.youtube.com/watch?v=go7QYaQR494">
-                                                <span>
-                                                   <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                      <path d="M14.2595 11.3877C15.9455 10.276 15.9455 7.79857 14.2595 6.68685L4.82854 0.468212C2.95139 -0.769576 0.455619 0.592952 0.476139 2.84432L0.588819 15.2073C0.609123 17.4355 3.08348 18.7571 4.94126 17.5321L14.2595 11.3877Z" fill="currentColor" />
+<h2 class="tp-hero-2-title tp-ff-funnel fw-600 fs-100 tp-text-common-white lh-1">
+                                         <span data-i18n="hero_ideas_from">Ideas from</span>
+                                        <span class="tp-video-2-main d-inline-block">
+                                           <span class="tp-video-main tp-hero-video d-flex align-items-center">
+                                              <a class="tp-hero-video-btn popup-video mr-20" href="https://www.youtube.com/watch?v=go7QYaQR494">
+                                                 <span>
+                                                    <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                       <path d="M14.2595 11.3877C15.9455 10.276 15.9455 7.79857 14.2595 6.68685L4.82854 0.468212C2.95139 -0.769576 0.455619 0.592952 0.476139 2.84432L0.588819 15.2073C0.609123 17.4355 3.08348 18.7571 4.94126 17.5321L14.2595 11.3877Z" fill="currentColor" />
                                                     </svg>
-                                                </span>
-                                             </a>
-                                             <span class="tp-ff-p lh-110-per mb-0 fw-500 fs-18 tp-text-grey-2 ls-1">We’re Global Brand<br>
-                                                Digital Agency.</span>
-                                          </span>
-                                       </span>
-                                       <br> 
-                                       Minus One<br> to One.
-                                    </h2>
+                                                 </span>
+                                              </a>
+                                              <span class="tp-ff-p lh-110-per mb-0 fw-500 fs-18 tp-text-grey-2 ls-1" data-i18n="hero_global_brand">We're Global Brand<br>
+                                                 Digital Agency.</span>
+                                           </span>
+                                        </span>
+                                        <br> 
+                                        <span data-i18n="hero_minus_one">Minus One<br> to One.</span>
+                                     </h2>
                                  </div>
                               </div>
                               <!-- <div class="col-lg-3">
@@ -351,12 +430,12 @@
                         <div class="tp-hero-2-author mb-40">
                            <div class="tp-hero-2-customer d-flex align-items-center mb-40">
                               <img class="mr-20" src="assets/img/hero/avatar-2.png" alt="">
-                              <p class="fw-500 fs-16 tp-text-grey-2 lh-130-per mb-0 d-inline-block">We have <b class="tp-text-common-white">24K+</b><br> 
-                                 customers in world-wide.</p>
+<p class="fw-500 fs-16 tp-text-grey-2 lh-130-per mb-0 d-inline-block" data-i18n="hero_customers">We have <b class="tp-text-common-white">24K+</b><br> 
+                                  customers in world-wide.</p>
                            </div>
-                           <p class="fw-400 fs-20 tp-text-grey-2 mb-30">We design stunning, <b class="tp-text-common-white fw-500">Responsive,</b> and <b class="tp-text-common-white fw-500">User-friendly websites</b> tailored to your business goals. Let’s create a <b class="tp-text-common-white fw-500">Digital experience</b> your audience will love.</p>
+                           <p class="fw-400 fs-20 tp-text-grey-2 mb-30" data-i18n="hero_description">We design stunning, <b class="tp-text-common-white fw-500">Responsive,</b> and <b class="tp-text-common-white fw-500">User-friendly websites</b> tailored to your business goals. Let’s create a <b class="tp-text-common-white fw-500">Digital experience</b> your audience will love.</p>
                            <a href="about-me-dark.html" class="tp-left-right fw-500 fs-15 tp-text-common-white text-uppercase hover-text-white">
-                              <span class="mr10 td-text d-inline-block mr-5">See Our Work</span>
+                              <span class="mr10 td-text d-inline-block mr-5" data-i18n="hero_see_work">See Our Work</span>
                               <span class="tp-arrow-angle">
                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M2.41379 3.30208C5.97452 3.05821 10.6092 1.55558 14 0C12.4438 3.39014 10.9406 8.02425 10.6973 11.585L8.35765 6.59331L1.14783 13.8037C1.02165 13.9295 0.850656 14.0001 0.672431 14C0.539461 14 0.409486 13.9605 0.298934 13.8866C0.188382 13.8128 0.102217 13.7077 0.0513353 13.5849C0.000453949 13.462 -0.0128613 13.3269 0.013072 13.1965C0.0390053 13.066 0.103024 12.9462 0.197034 12.8522L7.40683 5.64241L2.41379 3.30208Z" fill="currentColor" />
@@ -397,7 +476,7 @@
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="tp-about-2-title-wrap mb-50">
-                           <h2 class="tp-about-2-title tp-text-common-white tp-ff-funnel fw-500 fs-50 fs-md-30 lh-120-per tp_fade_anim" data-delay=".3">We're made of visionaries, entrepreneuners and executives. With our data-driven <br>
+                           <h2 class="tp-about-2-title tp-text-common-white tp-ff-funnel fw-500 fs-50 fs-md-30 lh-120-per tp_fade_anim" data-delay=".3" data-i18n="about_title">We're made of visionaries, entrepreneuners and executives. With our data-driven <br>
                               approach towards innovation and product discovery, we bring ideas from -1 to 1.</h2>
                         </div>
                      </div>
@@ -420,17 +499,17 @@
                      <div class="col-xl-4 col-lg-5">
                         <div class="tp-about-2-content mb-30">
                            <div class="tp_fade_anim" data-delay=".7">
-                              <p class="fs-18 lh-28 mb-25 tp-text-grey-2">We are a creative agency passionate about crafting bold, innovative, and strategic brand experiences. From branding and design to digital marketing and content creation, we bring ideas to life with creativity, precision, and impact.</p>
-                              <p class="fs-18 lh-28 mb-60 tp-text-grey-2">With a passion for innovation and a results-driven approach, we help businesses stand out in a crowded marketplace.</p>
+                              <p class="fs-18 lh-28 mb-25 tp-text-grey-2" data-i18n="about_description">We are a creative agency passionate about crafting bold, innovative, and strategic brand experiences. From branding and design to digital marketing and content creation, we bring ideas to life with creativity, precision, and impact.</p>
+                              <p class="fs-18 lh-28 mb-60 tp-text-grey-2" data-i18n="about_description2">With a passion for innovation and a results-driven approach, we help businesses stand out in a crowded marketplace.</p>
                            </div>
-                           <div class="tp-about-2-btn">
-                              <div class="tp-rounded-btn-wrap mb-30 mr-125 tp_fade_anim" data-delay=".9" data-fade-from="top" data-ease="bounce">
-                                 <div class="btn_wrapper d-inline-block">
-                                    <a href="about-me-dark.html" class="tp-btn-rounded btn-item">
-                                       Start the Journey
+<div class="tp-about-2-btn">
+                               <div class="tp-rounded-btn-wrap mb-30 mr-125 tp_fade_anim" data-delay=".9" data-fade-from="top" data-ease="bounce">
+                                  <div class="btn_wrapper d-inline-block">
+<a href="about-me-dark.html" class="tp-btn-rounded btn-item" data-cal-link="joao-paulo-vieira-da-silva/m1-labs" data-cal-namespace="m1-labs" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' data-cal-trigger>
+                                       <span data-i18n="about_journey">Get in Touch</span>
                                        <span class="d-block mt-10">
                                           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3791 3.0269C14.6431 2.80336 18.8916 1.42595 21.9998 0C20.5732 3.10763 19.1953 7.35556 18.9723 10.6196L16.8276 6.04382L1.05193 21.82C0.936264 21.9354 0.779526 22.0001 0.616152 22C0.494263 22 0.375118 21.9638 0.273781 21.8961C0.172441 21.8284 0.0934544 21.7321 0.046814 21.6195C0.000171661 21.5069 -0.0120335 21.383 0.0117397 21.2634C0.035511 21.1439 0.0941944 21.034 0.18037 20.9478L15.956 5.17221L11.3791 3.0269Z" fill="currentColor" />
+                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3791 3.0269C14.6431 2.80336 18.8916 1.42595 21.9998 0C20.5732 3.10763 19.1953 7.35556 18.9723 10.6196L16.8276 6.04382L1.05193 21.82C0.936264 21.9354 0.779526 22.0001 0.616152 22C0.494263 22 0.375118 21.9638 0.273781 21.8961C0.172441 21.8284 0.0934544 21.7321 0.046814 21.6195C0.000171661 21.5069 -0.0120335 21.383 0.0117397 21.2634C0.035511 21.1439 0.0941944 21.034 0.18037 20.9478L15.956 5.17221L11.3791 3.0269Z" fill="currentColor"></path>
                                           </svg>
                                        </span>
                                        <i class="tp-btn-circle-dot"></i>
@@ -664,9 +743,9 @@
                   <div class="row">
                      <div class="col-lg-10">
                         <div class="tp-service-2-title-wrap">
-                           <h2 class="tp-service-2-title tp-text-common-white tp-ff-funnel fw-500 fs-70 fs-lg-60 fs-sm-40 lh-110-per mb-110 tp_fade_anim" data-delay=".3"><span class="d-none d-sm-inline-block"></span>We craft memorable<br> brand identities that leave a lasting impact.</h2>
+                           <h2 class="tp-service-2-title tp-text-common-white tp-ff-funnel fw-500 fs-70 fs-lg-60 fs-sm-40 lh-110-per mb-110 tp_fade_anim" data-delay=".3" data-i18n="service_title"><span class="d-none d-sm-inline-block"></span>We craft memorable<br> brand identities that leave a lasting impact.</h2>
                            <div class="tp-service-2-para tp_fade_anim" data-delay=".5">
-                              <p class="fs-18 tp-text-grey-2">We blend strategy, creativity, and technology 
+                              <p class="fs-18 tp-text-grey-2" data-i18n">We blend strategy="service_subtitle, creativity, and technology 
                                  to build brands that stand out.  Helping brands positioning, and digital transformation.</p>
                            </div>
                         </div>
@@ -687,7 +766,7 @@
                                  <path d="M26.9202 12.5308C28.6948 10.8009 31.4991 10.8065 33.22 12.5259L47.5598 26.855C49.2797 28.5735 49.2861 31.3723 47.512 33.145L33.176 47.4692C31.4014 49.1992 28.5971 49.1935 26.8762 47.4741L12.5393 33.1489H12.5403C10.8093 31.376 10.8142 28.5743 12.5344 26.855L12.5354 26.856L26.9192 12.5298L26.9202 12.5308ZM30.0715 20.2505C24.712 20.2507 20.3157 24.6442 20.3157 30.0005C20.3159 35.3565 24.7122 39.7493 30.0715 39.7495C35.4294 39.7495 39.8281 35.4063 39.8284 30.0005C39.8284 24.5945 35.4295 20.2505 30.0715 20.2505Z" fill="white" stroke="white" />
                               </svg>
                            </span>
-                           <h3 class="tp-ff-funnel tp-text-common-white fw-500 fs-35 fs-lg-27 mb-20"><a class="underline-black" href="service-details-dark.html">Innovation</a></h3>
+                           <h3 class="tp-ff-funnel tp-text-common-white fw-500 fs-35 fs-lg-27 mb-20"><a class="underline-black" href="service-details-dark.html" data-i18n="service_innovation">Innovation</a></h3>
                            <!-- <a href="service-details-dark.html" class="tp-left-right fw-500 fs-15 tp-text-common-white hover-text-white text-uppercase">
                               <span class="tp-text d-inline-block mr-5">View All Work</span>
                               <span class="tp-arrow-angle">
@@ -707,7 +786,7 @@
                                  <path d="M59.5 0.5V59.5H47.3887C47.129 50.2559 39.6924 42.8574 30.5 42.5977V17.4014C39.7376 17.1413 47.1294 9.69894 47.3887 0.5H59.5Z" fill="white" stroke="white" />
                               </svg>
                            </span>
-                           <h3 class="tp-ff-funnel tp-text-common-white fw-500 fs-35 fs-lg-27 mb-20"><a class="underline-black" href="service-details-dark.html">Product Research</a></h3>
+                           <h3 class="tp-ff-funnel tp-text-common-white fw-500 fs-35 fs-lg-27 mb-20"><a class="underline-black" href="service-details-dark.html" data-i18n="service_research">Product Research</a></h3>
                            <!-- <a href="service-details-dark.html" class="tp-left-right fw-500 fs-15 tp-text-common-white hover-text-white text-uppercase">
                               <span class="td-text d-inline-block mr-5">View All Work</span>
                               <span class="tp-arrow-angle">
@@ -729,7 +808,7 @@
                                  <path d="M44.6899 30.5417H44.6909C52.6376 30.5417 59.36 36.8625 59.4526 44.8289V44.8464C59.4984 45.8073 59.4073 46.774 59.2222 47.7L59.2202 47.7078C58.6684 50.6971 58.7224 53.7627 59.1724 56.741L59.2671 57.3357C59.3825 58.0286 59.4639 58.7489 59.4897 59.4978C58.765 59.4972 58.0778 59.4177 57.3423 59.3015H57.3413C54.3333 58.8007 51.2684 58.6822 48.271 59.1541L47.6724 59.2556C46.7343 59.3958 45.8055 59.488 44.8354 59.488C42.2468 59.488 39.8841 58.7484 37.7905 57.5388C33.4317 54.9871 30.5065 50.16 30.5063 44.7273V30.4949L44.6899 30.5417Z" fill="white" stroke="white" />
                               </svg>
                            </span>
-                           <h3 class="tp-ff-funnel tp-text-common-white fw-500 fs-35 fs-lg-27 mb-20"><a class="underline-black" href="service-details-dark.html">GTM Strategies</a></h3>
+                           <h3 class="tp-ff-funnel tp-text-common-white fw-500 fs-35 fs-lg-27 mb-20"><a class="underline-black" href="service-details-dark.html" data-i18n="service_gtm">GTM Strategies</a></h3>
                            <!-- <a href="service-details-dark.html" class="tp-left-right fw-500 fs-15 tp-text-common-white hover-text-white text-uppercase">
                               <span class="td-text d-inline-block mr-5">View All Work</span>
                               <span class="tp-arrow-angle">
@@ -744,14 +823,14 @@
                      <div class="col-12 text-center pt-30 tp_fade_anim" data-delay=".5" data-fade-from="top" data-ease="bounce">
                         <div class="text-center d-inline-block">
                            <div class="tp-service-2-btn d-md-flex align-items-center">
-                              <p class="fs-18 tp-text-common-white mr-45">Want to discuss your idea?</p>
+                              <p class="fs-18 tp-text-common-white mr-45" data-i18n="service_discuss">Want to discuss your idea?</p>
                               <div class="tp-btn-group">
                                  <a class="tp-btn-circle" href="service-1-dark.html">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.41379 3.30208C5.97452 3.05821 10.6092 1.55558 14 0C12.4438 3.39014 10.9406 8.02425 10.6973 11.585L8.35765 6.59331L1.14783 13.8037C1.02165 13.9295 0.850656 14.0001 0.672431 14C0.539461 14 0.409486 13.9605 0.298934 13.8866C0.188382 13.8128 0.102217 13.7077 0.0513353 13.5849C0.000453949 13.462 -0.0128613 13.3269 0.013072 13.1965C0.0390053 13.066 0.103024 12.9462 0.197034 12.8522L7.40683 5.64241L2.41379 3.30208Z" fill="#030303" />
                                     </svg>
                                  </a>
-                                 <a class="tp-btn-2" data-cal-link="joao-paulo-vieira-da-silva/m1-labs" data-cal-namespace="m1-labs" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Get in Touch</a>
+                                 <a class="tp-btn-2" data-cal-link="joao-paulo-vieira-da-silva/m1-labs" data-cal-namespace="m1-labs" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' data-i18n="service_touch">Get in Touch</a>
                                  <a class="tp-btn-circle" href="service-1-dark.html">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.41379 3.30208C5.97452 3.05821 10.6092 1.55558 14 0C12.4438 3.39014 10.9406 8.02425 10.6973 11.585L8.35765 6.59331L1.14783 13.8037C1.02165 13.9295 0.850656 14.0001 0.672431 14C0.539461 14 0.409486 13.9605 0.298934 13.8866C0.188382 13.8128 0.102217 13.7077 0.0513353 13.5849C0.000453949 13.462 -0.0128613 13.3269 0.013072 13.1965C0.0390053 13.066 0.103024 12.9462 0.197034 12.8522L7.40683 5.64241L2.41379 3.30208Z" fill="#030303" />
@@ -787,7 +866,7 @@
                                  <path d="M0 55H12.012C12.012 46.4131 18.964 39.4996 27.5 39.4996V15.5004C18.92 15.5004 12.012 8.54283 12.012 0H0V55Z" fill="#C4EE18" />
                               </svg>
                            </span>
-                           <h5 class="tp-ff-funnel fs-25 fw-500 lh-34 tp-text-common-white mb-50">Measurable Impact 
+                           <h5 class="tp-ff-funnel fs-25 fw-500 lh-34 tp-text-common-white mb-50" data-i18n="banner_title">Measurable Impact 
                               with User-centric web experiences.</h5>
                            <h3 class="tp-ff-funnel fs-70 fw-600 tp-text-common-white mb-0">98% <span class="fs-35 tp-text-theme-primary">>2X</span></h3>
                         </div>
@@ -803,8 +882,8 @@
                   <div class="row justify-content-center">
                      <div class="col-xl-6 col-md-7">
                         <div class="tp-testimonial-2-title-wrap text-center mb-50 tp_fade_anim" data-delay=".3">
-                           <h2 class="tp-ff-funnel fw-500 fs-70 fs-xs-50 tp-text-common-white mb-15">Testimonials</h2>
-                           <p class="fs-18 tp-text-grey-2">Clients of Aleric AdOutreach, have shared positive experiences regarding their Marketing advertising strategies.</p>
+                           <h2 class="tp-ff-funnel fw-500 fs-70 fs-xs-50 tp-text-common-white mb-15" data-i18n="testimonial_title">Testimonials</h2>
+                           <p class="fs-18 tp-text-grey-2" data-i18n="testimonial_subtitle">Clients of Aleric AdOutreach, have shared positive experiences regarding their Marketing advertising strategies.</p>
                         </div>
                      </div>
                      <div class="col-xl-8 col-lg-9">
@@ -905,7 +984,7 @@
                            </span>
                            <div>
                               <h2 class="tp-ff-funnel tp-text-common-white fw-500 fs-70 text-uppercase"><span data-purecounter-duration="1" data-purecounter-end="34" class="purecounter">0</span>K</h2>
-                              <span class="fs-500 fs-18 tp-text-grey-2">Project Completed</span>
+                              <span class="fs-500 fs-18 tp-text-grey-2" data-i18n="counter_projects">Project Completed</span>
                            </div>
                         </div>
                      </div>
@@ -918,7 +997,7 @@
                            </span>
                            <div>
                               <h2 class="tp-ff-funnel tp-text-common-white fw-500 fs-70 text-uppercase"><span data-purecounter-duration="1" data-purecounter-end="12" class="purecounter">0</span></h2>
-                              <span class="fs-500 fs-18 tp-text-grey-2">Country Office</span>
+                              <span class="fs-500 fs-18 tp-text-grey-2" data-i18n="counter_countries">Country Office</span>
                            </div>
                         </div>
                      </div>
@@ -931,7 +1010,7 @@
                            </span>
                            <div>
                               <h2 class="tp-ff-funnel tp-text-common-white fw-500 fs-70 text-uppercase"><span data-purecounter-duration="1" data-purecounter-end="12" class="purecounter">0</span>+</h2>
-                              <span class="fs-500 fs-18 tp-text-grey-2">Year of Experience</span>
+                              <span class="fs-500 fs-18 tp-text-grey-2" data-i18n="counter_experience">Year of Experience</span>
                            </div>
                         </div>
                      </div>
@@ -944,7 +1023,7 @@
                            </span>
                            <div>
                               <h2 class="tp-ff-funnel tp-text-common-white fw-500 fs-70 text-uppercase"><span data-purecounter-duration="1" data-purecounter-end="98" class="purecounter">0</span>%</h2>
-                              <span class="fs-500 fs-18 tp-text-grey-2">Happy Customer</span>
+                              <span class="fs-500 fs-18 tp-text-grey-2" data-i18n="counter_happy">Happy Customer</span>
                            </div>
                         </div>
                      </div>
@@ -1191,7 +1270,7 @@
                                     <path d="M65.416 11.8926L73.62 6.76034C73.7367 6.67779 73.8326 6.56504 73.8989 6.43228C73.9653 6.29953 74 6.15095 74 6C74 5.84905 73.9653 5.70048 73.8989 5.56772C73.8326 5.43496 73.7367 5.32221 73.62 5.23966L65.416 0.107354C65.2562 0.0134291 65.072 -0.0202036 64.8925 0.0117582C64.7131 0.04372 64.5485 0.139459 64.4249 0.28388C64.3012 0.428302 64.2254 0.613192 64.2095 0.809402C64.1936 1.00561 64.2384 1.20198 64.3369 1.36755L66.7162 5.11998L0.812653 5.11998C0.597137 5.11998 0.390457 5.21269 0.238068 5.37773C0.0856781 5.54277 6.10352e-05 5.7666 6.10352e-05 6C6.10352e-05 6.2334 0.0856781 6.45724 0.238068 6.62227C0.390457 6.78731 0.597137 6.88003 0.812653 6.88003L66.7162 6.88003L64.3369 10.6325C64.2384 10.798 64.1936 10.9944 64.2095 11.1906C64.2254 11.3868 64.3012 11.5717 64.4249 11.7161C64.5485 11.8605 64.7131 11.9563 64.8925 11.9882C65.072 12.0202 65.2562 11.9866 65.416 11.8926Z" fill="#C4EE18" />
                                  </svg>
                               </span> -->
-                              <h2 class="tp-footer-top-title tp-text-common-white text-uppercase fw-500 rotate-text-anim">Let’s Talk</h2>
+                              <h2 class="tp-footer-top-title tp-text-common-white text-uppercase fw-500 rotate-text-anim" data-i18n="footer_talk">Let’s Talk</h2>
                               <div class="tp-footer-social tp_fade_anim" data-delay=".4" data-fade-from="bottom" data-ease="bounce">
                                  <ul>
                                     <li>
@@ -1225,15 +1304,15 @@
                         <div class="col-lg-3">
                            <div class="tp-rounded-btn-wrap tp-footer-btn tp-footer-2-btn text-lg-end mb-40 tp_fade_anim" data-delay=".5" data-fade-from="top" data-ease="bounce">
                               <div class="btn_wrapper d-inline-block">
-                                 <a href="contact-dark.html" class="tp-btn-rounded btn-item">
-                                    <span class="d-block mb-10">
-                                       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3791 3.0269C14.6431 2.80336 18.8916 1.42595 21.9998 0C20.5732 3.10763 19.1953 7.35556 18.9723 10.6196L16.8276 6.04382L1.05193 21.82C0.936264 21.9354 0.779526 22.0001 0.616152 22C0.494263 22 0.375118 21.9638 0.273781 21.8961C0.172441 21.8284 0.0934544 21.7321 0.046814 21.6195C0.000171661 21.5069 -0.0120335 21.383 0.0117397 21.2634C0.035511 21.1439 0.0941944 21.034 0.18037 20.9478L15.956 5.17221L11.3791 3.0269Z" fill="currentColor" />
-                                       </svg>
-                                    </span>
-                                    Start the<br> Journey
-                                    <i class="tp-btn-circle-dot"></i>
-                                 </a>
+<a href="about-me-dark.html" class="tp-btn-rounded btn-item" data-cal-link="joao-paulo-vieira-da-silva/m1-labs" data-cal-namespace="m1-labs" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' data-cal-trigger>
+                                      <span class="d-block mb-10">
+                                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3791 3.0269C14.6431 2.80336 18.8916 1.42595 21.9998 0C20.5732 3.10763 19.1953 7.35556 18.9723 10.6196L16.8276 6.04382L1.05193 21.82C0.936264 21.9354 0.779526 22.0001 0.616152 22C0.494263 22 0.375118 21.9638 0.273781 21.8961C0.172441 21.8284 0.0934544 21.7321 0.046814 21.6195C0.000171661 21.5069 -0.0120335 21.383 0.0117397 21.2634C0.035511 21.1439 0.0941944 21.034 0.18037 20.9478L15.956 5.17221L11.3791 3.0269Z" fill="currentColor"></path>
+                                         </svg>
+                                      </span>
+                                      <span data-i18n="about_journey">Get in Touch</span>
+                                     <i class="tp-btn-circle-dot"></i>
+                                  </a>
                               </div>
                            </div>
                         </div>
@@ -1248,7 +1327,7 @@
                               <div class="tp-footer-logo mb-25">
                                  <a href="index.html"><img data-width="50" src="assets/img/logo/logo-white.svg" alt=""></a>
                               </div>
-                              <p class="fw-500 fs-18 tp-text-grey-2 lh-28">WW're bringing innovative ideas to reality.</p>
+                              <p class="fw-500 fs-18 tp-text-grey-2 lh-28" data-i18n="footer_about">WW're bringing innovative ideas to reality.</p>
                            </div>
                         </div>
                         <div class="col-lg-7">
@@ -1267,9 +1346,9 @@
                               </div> -->
                               <div class="col-lg-12">
                                  <div class="tp-footer-widget-form mb-60 tp_fade_anim" data-delay=".9">
-                                    <h3 class="tp-footer-widget-title tp-ff-heading fs-25 mb-25 text-uppercase tp-text-common-white">Newsletter</h3>
+                                    <h3 class="tp-footer-widget-title tp-ff-heading fs-25 mb-25 text-uppercase tp-text-common-white" data-i18n="footer_newsletter">Newsletter</h3>
                                     <form class="p-relative" action="#">
-                                       <input class="tp-input" type="text" placeholder="Enter Email Address">
+                                       <input class="tp-input" type="text" placeholder="Enter Email Address" data-i18n="footer_email">
                                        <button class="tp-button" type="submit">
                                           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                              <path d="M6.5634 13.2091V16.6876C6.56397 16.8058 6.60173 16.9208 6.67132 17.0164C6.74091 17.1119 6.8388 17.1832 6.95114 17.22C7.06347 17.2569 7.18455 17.2574 7.29722 17.2216C7.40989 17.1858 7.50843 17.1155 7.5789 17.0206L9.61365 14.2516L6.5634 13.2091ZM17.7647 0.104306C17.6801 0.044121 17.5806 0.00848417 17.4771 0.00133654C17.3736 -0.00581108 17.2701 0.015809 17.1782 0.0638058L0.303148 8.87631C0.206054 8.92762 0.126054 9.00617 0.0729657 9.1023C0.0198771 9.19843 -0.00399046 9.30798 0.00429223 9.41748C0.0125749 9.52699 0.0526475 9.6317 0.119592 9.71875C0.186537 9.80581 0.277441 9.87143 0.381148 9.90756L5.0724 11.5111L15.0632 2.96856L7.33215 12.2828L15.1944 14.9701C15.2724 14.9963 15.3552 15.0051 15.437 14.996C15.5188 14.9868 15.5976 14.9599 15.6679 14.9171C15.7382 14.8743 15.7983 14.8167 15.844 14.7482C15.8897 14.6798 15.9199 14.6021 15.9324 14.5208L17.9949 0.645806C18.0102 0.543093 17.9967 0.438159 17.9561 0.342598C17.9155 0.247038 17.8492 0.164569 17.7647 0.104306Z" fill="#C4EE18" />
@@ -1294,7 +1373,7 @@
                                        <path d="M0.875 7C0.875 8.62445 1.52031 10.1824 2.66897 11.331C3.81763 12.4797 5.37555 13.125 7 13.125C8.62445 13.125 10.1824 12.4797 11.331 11.331C12.4797 10.1824 13.125 8.62445 13.125 7C13.125 5.37555 12.4797 3.81763 11.331 2.66897C10.1824 1.52031 8.62445 0.875 7 0.875C5.37555 0.875 3.81763 1.52031 2.66897 2.66897C1.52031 3.81763 0.875 5.37555 0.875 7ZM14 7C14 8.85652 13.2625 10.637 11.9497 11.9497C10.637 13.2625 8.85652 14 7 14C5.14348 14 3.36301 13.2625 2.05025 11.9497C0.737498 10.637 0 8.85652 0 7C0 5.14348 0.737498 3.36301 2.05025 2.05025C3.36301 0.737498 5.14348 0 7 0C8.85652 0 10.637 0.737498 11.9497 2.05025C13.2625 3.36301 14 5.14348 14 7ZM7.12775 4.368C6.06725 4.368 5.44162 5.173 5.44162 6.55725V7.48475C5.44162 8.85938 6.05675 9.639 7.12775 9.639C7.98438 9.639 8.56363 9.12625 8.64062 8.39825H9.77375V8.47962C9.68625 9.74662 8.589 10.6383 7.1225 10.6383C5.29288 10.6383 4.26213 9.46925 4.26213 7.48563V6.54675C4.26213 4.56838 5.313 3.3635 7.12337 3.3635C8.59425 3.3635 9.6915 4.28575 9.77375 5.614V5.691H8.64062C8.56363 4.92188 7.96863 4.368 7.12775 4.368Z" fill="#999999" />
                                     </svg>
                                  </span>
-                                 Copyright 2026 <a class="tp-text-common-white hover-text-primary" href="#">M1 Labs</a> All Right Reserves. 
+                                 Copyright <span data-i18n="footer_copyright">2026 M1 Labs All Right Reserves.</span> 
                               </p>
                            </div>
                         </div>
@@ -1318,8 +1397,9 @@
    </div>
 
 
-   <!-- JS here -->
-   <script src="assets/js/vendor/jquery.js"></script>
+    <!-- JS here -->
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/vendor/jquery.js"></script>
    <script src="assets/js/bootstrap-bundle.js"></script>
    <script src="assets/js/plugin.js"></script>
    <script src="assets/js/three.js"></script>
